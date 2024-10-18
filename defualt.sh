@@ -31,7 +31,7 @@ brew install --cask --no-quarantine alacritty
 brew install --cask zed visual-studio-code orcaslicer nikitabobko/tap/aerospace inkscape gimp blender modrinth
 
 # Install closed-source programs
-brew install --cask google-chrome discord slack spotify orbstack
+brew install --cask google-chrome discord slack spotify steam orbstack
 
 # Configure Git
 git config --global user.name "Alistair Keiller"
