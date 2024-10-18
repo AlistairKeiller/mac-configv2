@@ -28,7 +28,7 @@ brew install --cask julia
 brew install --cask --no-quarantine alacritty
 
 # Install open-source programs
-brew install --cask zed visual-studio-code bambu-studio nikitabobko/tap/aerospace inkscape blender orbstack modrinth
+brew install --cask zed visual-studio-code orcaslicer nikitabobko/tap/aerospace inkscape blender orbstack modrinth
 
 # Install closed-source programs
 brew install --cask google-chrome discord slack spotify
