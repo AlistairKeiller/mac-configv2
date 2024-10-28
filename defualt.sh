@@ -48,6 +48,6 @@ cp -r ./config/* ~/.config/
 # ctrl+cmd to drag window
 defaults write -g NSWindowShouldDragOnGesture YES
 
-# Install 3DxWare, Fusion, and LockDown Browser
+# Install 3DxWare, Fusion, whisperax, and LockDown Browser
 # Theme zed (extension), chrome (web store)
 # Auto hide dock, disable mouse acceleration, natural scrolling, and shake mouse pointer to locate
