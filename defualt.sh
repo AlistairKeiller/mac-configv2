@@ -31,7 +31,7 @@ git clone https://github.com/NvChad/starter ~/.config/nvim
 brew install deno
 
 # Install misc casks 
-brew install --cask julia visual-studio-code orcaslicer nikitabobko/tap/aerospace inkscape blender modrinth \
+brew install --cask julia visual-studio-code orcaslicer nikitabobko/tap/aerospace inkscape blender modrinth font-jetbrains-mono-nerd-font \
             discord slack orbstack
 
 # Configure Git
