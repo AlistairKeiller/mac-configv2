@@ -23,8 +23,12 @@ ln -s /opt/homebrew/bin/pip3 /opt/homebrew/bin/pip
 # Install alacritty
 brew install --cask --no-quarantine alacritty
 
+# Install neochad
+bre install neovim
+git clone https://github.com/NvChad/starter ~/.config/nvim
+
 # Install misc packages
-brew install neovim deno
+brew install deno
 
 # Install misc casks 
 brew install --cask julia visual-studio-code orcaslicer nikitabobko/tap/aerospace inkscape blender modrinth \
