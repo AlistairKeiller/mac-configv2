@@ -28,7 +28,7 @@ bre install neovim
 git clone https://github.com/NvChad/starter ~/.config/nvim
 
 # Install misc packages
-brew install deno
+brew install deno node
 
 # Install misc casks 
 brew install --cask julia visual-studio-code orcaslicer nikitabobko/tap/aerospace inkscape blender modrinth font-jetbrains-mono-nerd-font \
