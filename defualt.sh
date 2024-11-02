@@ -28,7 +28,7 @@ brew install neovim deno
 
 # Install misc casks 
 brew install --cask julia visual-studio-code orcaslicer nikitabobko/tap/aerospace inkscape blender modrinth \
-            google-chrome discord slack spotify steam orbstack
+            discord slack orbstack
 
 # Configure Git
 git config --global user.name "Alistair Keiller"
@@ -45,6 +45,7 @@ cp -r ./config/* ~/.config/
 # ctrl+cmd to drag window
 defaults write -g NSWindowShouldDragOnGesture YES
 
-# Install 3DxWare, Fusion, whisperax, and LockDown Browser
+# Install 3DxWare, Fusion, whisperax, AdGaurd for safari, and LockDown Browser
 # Theme zed (extension), chrome (web store)
 # Auto hide dock, disable mouse acceleration, natural scrolling, and shake mouse pointer to locate
+# enable "show features for web developers" in safari (under advanced settings)
