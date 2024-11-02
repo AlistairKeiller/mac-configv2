@@ -11,27 +11,24 @@ sudo sh -c 'echo /opt/homebrew/bin/fish >> /etc/shells'
 chsh -s /opt/homebrew/bin/fish
 fish -c "fish_add_path /opt/homebrew/bin"
 
-# Install proramming languages
+# Install rust
 brew install rustup-init
 rustup-init -y --profile complete
 
-brew tap oven-sh/bun
-brew install bun
-
+# Install Python
 brew install python
 ln -s /opt/homebrew/bin/python3 /opt/homebrew/bin/python
 ln -s /opt/homebrew/bin/pip3 /opt/homebrew/bin/pip
 
-brew install --cask julia
-
 # Install alacritty
 brew install --cask --no-quarantine alacritty
 
-# Install open-source programs
-brew install --cask zed visual-studio-code orcaslicer nikitabobko/tap/aerospace inkscape gimp blender modrinth
+# Install misc packages
+brew install neovim deno
 
-# Install closed-source programs
-brew install --cask google-chrome discord slack spotify steam orbstack
+# Install misc casks 
+brew install --cask julia visual-studio-code orcaslicer nikitabobko/tap/aerospace inkscape blender modrinth \
+            google-chrome discord slack spotify steam orbstack
 
 # Configure Git
 git config --global user.name "Alistair Keiller"
