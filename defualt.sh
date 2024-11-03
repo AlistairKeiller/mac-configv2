@@ -23,15 +23,11 @@ ln -s /opt/homebrew/bin/pip3 /opt/homebrew/bin/pip
 # Install alacritty
 brew install --cask --no-quarantine alacritty
 
-# Install neochad
-bre install neovim
-git clone https://github.com/NvChad/starter ~/.config/nvim
-
 # Install misc packages
-brew install deno node
+brew install deno
 
 # Install misc casks 
-brew install --cask julia visual-studio-code orcaslicer nikitabobko/tap/aerospace inkscape blender modrinth font-jetbrains-mono-nerd-font \
+brew install --cask visual-studio-code orcaslicer nikitabobko/tap/aerospace modrinth \
             discord slack orbstack
 
 # Configure Git
@@ -50,6 +46,5 @@ cp -r ./config/* ~/.config/
 defaults write -g NSWindowShouldDragOnGesture YES
 
 # Install 3DxWare, Fusion, whisperax, AdGaurd for safari, and LockDown Browser
-# Theme zed (extension), chrome (web store)
 # Auto hide dock, disable mouse acceleration, natural scrolling, and shake mouse pointer to locate
 # enable "show features for web developers" in safari (under advanced settings)
