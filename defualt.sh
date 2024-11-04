@@ -48,3 +48,5 @@ defaults write -g NSWindowShouldDragOnGesture YES
 # Install 3DxWare, Fusion, whisperax, AdGaurd for safari, and LockDown Browser
 # Auto hide dock, disable mouse acceleration, natural scrolling, and shake mouse pointer to locate
 # enable "show features for web developers" in safari (under advanced settings)
+# disable "Show Spotlight search" and "Show Finder search window" (https://manual.raycast.com/hotkey)
+# Configure Raycast
