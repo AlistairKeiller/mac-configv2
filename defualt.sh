@@ -28,7 +28,7 @@ brew install deno starship uv lsd zoxide
 
 # Install misc casks 
 brew install --cask visual-studio-code orcaslicer nikitabobko/tap/aerospace modrinth font-jetbrains-mono-nerd-font \
-            discord slack orbstack
+            discord slack raycast orbstack
 
 # Configure Git
 git config --global user.name "Alistair Keiller"
