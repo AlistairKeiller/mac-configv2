@@ -16,7 +16,7 @@ brew install rustup-init
 rustup-init -y --profile complete
 
 # Install Python
-brew install python py-spy
+brew install python
 ln -s /opt/homebrew/bin/python3 /opt/homebrew/bin/python
 ln -s /opt/homebrew/bin/pip3 /opt/homebrew/bin/pip
 
