@@ -27,7 +27,7 @@ brew install --cask --no-quarantine alacritty
 brew install deno starship uv lsd zoxide
 
 # Install misc casks 
-brew install --cask visual-studio-code orcaslicer nikitabobko/tap/aerospace modrinth font-jetbrains-mono-nerd-font raspberry-pi-imager \
+brew install --cask visual-studio-code orcaslicer nikitabobko/tap/aerospace modrinth font-jetbrains-mono-nerd-font raspberry-pi-imager cirruslabs/cli/tart \
             discord slack raycast orbstack
 
 # Configure Git
