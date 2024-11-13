@@ -24,7 +24,7 @@ ln -s /opt/homebrew/bin/pip3 /opt/homebrew/bin/pip
 brew install --cask --no-quarantine alacritty
 
 # Install misc packages
-brew install deno starship uv lsd zoxide
+brew install mode deno starship uv lsd zoxide
 
 # Install misc casks 
 brew install --cask visual-studio-code orcaslicer nikitabobko/tap/aerospace modrinth font-jetbrains-mono-nerd-font raspberry-pi-imager cirruslabs/cli/tart \
