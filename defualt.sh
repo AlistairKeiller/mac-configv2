@@ -24,7 +24,7 @@ ln -s /opt/homebrew/bin/pip3 /opt/homebrew/bin/pip
 brew install --cask --no-quarantine alacritty
 
 # Install misc packages
-brew install node deno starship uv lsd zoxide mypy neovim
+brew install node deno starship uv lsd zoxide mypy neovim helix
 git clone https://github.com/NvChad/starter ~/.config/nvim
 
 # Install misc casks 
