@@ -46,8 +46,7 @@ cp -r ./config/* ~/.config/
 # ctrl+cmd to drag window
 defaults write -g NSWindowShouldDragOnGesture YES
 
-# whisperax (https://testflight.apple.com/join/LPVOyJZW), and LockDown Browser
+# whisperax (https://testflight.apple.com/join/LPVOyJZW)
 # Auto hide dock, disable mouse acceleration, and shake mouse pointer to locate
-# enable "show features for web developers" in safari (under advanced settings)
 # disable "Show Spotlight search" and "Show Finder search window" (https://manual.raycast.com/hotkey)
 # Configure Raycast
