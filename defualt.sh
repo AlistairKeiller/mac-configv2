@@ -29,7 +29,7 @@ git clone https://github.com/NvChad/starter ~/.config/nvim
 
 # Install misc casks 
 brew install --cask visual-studio-code orcaslicer nikitabobko/tap/aerospace modrinth font-jetbrains-mono-nerd-font raspberry-pi-imager cirruslabs/cli/tart \
-            discord slack raycast orbstack spotify
+            discord slack raycast orbstack spotify orion
 
 # Configure Git
 git config --global user.name "Alistair Keiller"
@@ -46,7 +46,7 @@ cp -r ./config/* ~/.config/
 # ctrl+cmd to drag window
 defaults write -g NSWindowShouldDragOnGesture YES
 
-# whisperax (https://testflight.apple.com/join/LPVOyJZW), AdGaurd for safari, and LockDown Browser
+# whisperax (https://testflight.apple.com/join/LPVOyJZW), and LockDown Browser
 # Auto hide dock, disable mouse acceleration, and shake mouse pointer to locate
 # enable "show features for web developers" in safari (under advanced settings)
 # disable "Show Spotlight search" and "Show Finder search window" (https://manual.raycast.com/hotkey)
