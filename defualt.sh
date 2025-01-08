@@ -28,7 +28,7 @@ brew install node deno starship uv lsd zoxide mypy neovim helix
 git clone https://github.com/NvChad/starter ~/.config/nvim
 
 # Install misc casks 
-brew install --cask visual-studio-code orcaslicer nikitabobko/tap/aerospace modrinth font-jetbrains-mono-nerd-font raspberry-pi-imager cirruslabs/cli/tart \
+brew install --cask visual-studio-code orcaslicer nikitabobko/tap/aerospace modrinth font-jetbrains-mono-nerd-font raspberry-pi-imager \
             discord slack raycast orbstack spotify orion
 
 # Configure Git
