@@ -50,3 +50,4 @@ defaults write -g NSWindowShouldDragOnGesture YES
 # Auto hide dock, disable mouse acceleration, and shake mouse pointer to locate
 # disable "Show Spotlight search" and "Show Finder search window" (https://manual.raycast.com/hotkey)
 # Configure Raycast
+# Install 3dconnexion
