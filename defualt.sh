@@ -51,3 +51,4 @@ defaults write -g NSWindowShouldDragOnGesture YES
 # disable "Show Spotlight search" and "Show Finder search window" (https://manual.raycast.com/hotkey)
 # Configure Raycast
 # Install 3dconnexion
+# Install Fusion
