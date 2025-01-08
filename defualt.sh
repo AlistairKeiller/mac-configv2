@@ -28,7 +28,7 @@ brew install node starship uv lsd zoxide mypy
 
 # Install misc casks 
 brew install --cask visual-studio-code orcaslicer nikitabobko/tap/aerospace modrinth font-jetbrains-mono-nerd-font raspberry-pi-imager \
-            discord slack raycast orbstack spotify orion
+            discord slack raycast orbstack spotify
 
 # Configure Git
 git config --global user.name "Alistair Keiller"
