@@ -30,13 +30,28 @@ brew install starship uv lsd zoxide
 brew install --cask visual-studio-code orcaslicer nikitabobko/tap/aerospace modrinth font-jetbrains-mono-nerd-font raspberry-pi-imager alex313031-thorium \
             discord slack raycast orbstack spotify crossover
 
-# Configure Git
+# Configure git+ssh
 git config --global user.name "Alistair Keiller"
 git config --global user.email alistair@keiller.net
-
-# Configure ssh
-mkdir -p ~/.ssh
-echo "ServerAliveInterval 60" > ~/.ssh/config
+mkdir ~/.ssh
+ssh-keygen -t ed25519 -C "alistair@keiller.net"
+eval "$(ssh-agent -s)"
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+touch ~/.ssh/config
+cat <<'EOF' >> ~/.ssh/config
+ServerAliveInterval 60
+Host *
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ed25519
+EOF
+git config --global gpg.format ssh
+git config --global user.signingkey ~/.ssh/id_ed25519
+git config --global commit.gpgsign true
+git config --global tag.gpgsign true
+touch ~/.ssh/allowed_signers
+echo "$(git config --get user.email) namespaces=\"git\" $(cat ~/.ssh/id_ed25519.pub)" >> ~/.ssh/allowed_signers
+# copy the key, `pbcopy < ~/.ssh/id_ed25519.pub`, to https://github.com/settings/keys as both an Authentication key and Signing key
 
 # .config
 mkdir -p ~/.config/
@@ -51,4 +66,3 @@ defaults write -g NSWindowShouldDragOnGesture YES
 # Configure Raycast
 # Install 3dconnexion
 # Install Fusion
-# Make commits verified
