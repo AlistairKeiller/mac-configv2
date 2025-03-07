@@ -51,3 +51,4 @@ defaults write -g NSWindowShouldDragOnGesture YES
 # Configure Raycast
 # Install 3dconnexion
 # Install Fusion
+# Make commits verified
