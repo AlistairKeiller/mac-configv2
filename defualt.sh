@@ -27,7 +27,7 @@ brew install --cask --no-quarantine alacritty
 brew install starship uv lsd zoxide
 
 # Install misc casks 
-brew install --cask visual-studio-code orcaslicer nikitabobko/tap/aerospace modrinth font-jetbrains-mono-nerd-font raspberry-pi-imager thorium \
+brew install --cask visual-studio-code orcaslicer nikitabobko/tap/aerospace modrinth font-jetbrains-mono-nerd-font raspberry-pi-imager alex313031-thorium \
             discord slack raycast orbstack spotify crossover
 
 # Configure Git
