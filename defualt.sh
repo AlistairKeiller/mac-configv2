@@ -10,18 +10,6 @@ brew install fish
 sudo sh -c 'echo /opt/homebrew/bin/fish >> /etc/shells'
 chsh -s /opt/homebrew/bin/fish
 fish -c "fish_add_path /opt/homebrew/bin"
-echo "function fish_greeting" >> ~/.config/fish/config.fish
-echo "end" >> ~/.config/fish/config.fish
-echo "" >> ~/.config/fish/config.fish
-echo "if status is-interactive" >> ~/.config/fish/config.fish
-echo "    starship init fish | source" >> ~/.config/fish/config.fish
-echo "    zoxide init fish | source" >> ~/.config/fish/config.fish
-echo "    alias ls='lsd'" >> ~/.config/fish/config.fish
-echo "    alias l='ls -l'" >> ~/.config/fish/config.fish
-echo "    alias la='ls -a'" >> ~/.config/fish/config.fish
-echo "    alias lla='ls -la'" >> ~/.config/fish/config.fish
-echo "    alias lt='ls --tree'" >> ~/.config/fish/config.fish
-echo "end" >> ~/.config/fish/config.fish
 
 # Install rust
 brew install rustup-init
