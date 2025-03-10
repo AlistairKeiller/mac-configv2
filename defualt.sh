@@ -10,6 +10,18 @@ brew install fish
 sudo sh -c 'echo /opt/homebrew/bin/fish >> /etc/shells'
 chsh -s /opt/homebrew/bin/fish
 fish -c "fish_add_path /opt/homebrew/bin"
+echo "function fish_greeting" >> ~/.config/fish/config.fish
+echo "end" >> ~/.config/fish/config.fish
+echo "" >> ~/.config/fish/config.fish
+echo "if status is-interactive" >> ~/.config/fish/config.fish
+echo "    starship init fish | source" >> ~/.config/fish/config.fish
+echo "    zoxide init fish | source" >> ~/.config/fish/config.fish
+echo "    alias ls='lsd'" >> ~/.config/fish/config.fish
+echo "    alias l='ls -l'" >> ~/.config/fish/config.fish
+echo "    alias la='ls -a'" >> ~/.config/fish/config.fish
+echo "    alias lla='ls -la'" >> ~/.config/fish/config.fish
+echo "    alias lt='ls --tree'" >> ~/.config/fish/config.fish
+echo "end" >> ~/.config/fish/config.fish
 
 # Install rust
 brew install rustup-init
@@ -24,11 +36,11 @@ ln -s /opt/homebrew/bin/pip3 /opt/homebrew/bin/pip
 brew install --cask --no-quarantine alacritty
 
 # Install misc packages
-brew install starship uv lsd zoxide
+brew install starship lsd zoxide uv bat fd hyperfine ripgrep dust tokei zellij yazi sniffnet
 
 # Install misc casks 
-brew install --cask visual-studio-code orcaslicer nikitabobko/tap/aerospace modrinth font-jetbrains-mono-nerd-font raspberry-pi-imager alex313031-thorium \
-            discord slack raycast orbstack spotify crossover
+brew install --cask visual-studio-code orcaslicer nikitabobko/tap/aerospace font-jetbrains-mono-nerd-font alex313031-thorium rustdesk \
+            discord slack raycast orbstack spotify crossover steam
 
 # Configure git+ssh
 git config --global user.name "Alistair Keiller"
@@ -38,13 +50,11 @@ ssh-keygen -t ed25519 -C "alistair@keiller.net"
 eval "$(ssh-agent -s)"
 ssh-add --apple-use-keychain ~/.ssh/id_ed25519
 touch ~/.ssh/config
-cat <<'EOF' >> ~/.ssh/config
-ServerAliveInterval 60
-Host *
-  AddKeysToAgent yes
-  UseKeychain yes
-  IdentityFile ~/.ssh/id_ed25519
-EOF
+echo "ServerAliveInterval 60" >> ~/.ssh/config
+echo "Host *" >> ~/.ssh/config
+echo "  AddKeysToAgent yes" >> ~/.ssh/config
+echo "  UseKeychain yes" >> ~/.ssh/config
+echo "  IdentityFile ~/.ssh/id_ed25519" >> ~/.ssh/config
 git config --global gpg.format ssh
 git config --global user.signingkey ~/.ssh/id_ed25519
 git config --global commit.gpgsign true
@@ -60,9 +70,8 @@ cp -r ./config/* ~/.config/
 # ctrl+cmd to drag window
 defaults write -g NSWindowShouldDragOnGesture YES
 
-# whisperax (https://testflight.apple.com/join/LPVOyJZW)
 # Auto hide dock, disable mouse acceleration, and shake mouse pointer to locate
 # disable "Show Spotlight search" and "Show Finder search window" (https://manual.raycast.com/hotkey)
 # Configure Raycast
-# Install 3dconnexion
 # Install Fusion
+# Install tailscale
