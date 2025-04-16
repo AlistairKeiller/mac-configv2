@@ -58,7 +58,7 @@ cp -r ./config/* ~/.config/
 # ctrl+cmd to drag window
 defaults write -g NSWindowShouldDragOnGesture YES
 
-# Auto hide dock, disable mouse acceleration, and shake mouse pointer to locate
+# Auto hide dock, disable mouse acceleration, shake mouse pointer to locate, and enable tap to click
 # disable "Show Spotlight search" and "Show Finder search window" (https://manual.raycast.com/hotkey)
 # Configure Raycast
 # Install Fusion
