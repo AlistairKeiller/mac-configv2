@@ -24,10 +24,10 @@ ln -s /opt/homebrew/bin/pip3 /opt/homebrew/bin/pip
 brew install --cask --no-quarantine alacritty
 
 # Install misc packages
-brew install starship lsd zoxide uv bat fd hyperfine dust tokei fzf
+brew install starship lsd zoxide uv bat hyperfine dust tokei fzf
 
 # Install misc casks 
-brew install --cask visual-studio-code orcaslicer nikitabobko/tap/aerospace font-jetbrains-mono-nerd-font alex313031-thorium rustdesk \
+brew install --cask visual-studio-code orcaslicer nikitabobko/tap/aerospace font-jetbrains-mono-nerd-font alex313031-thorium rustdesk raspberry-pi-imager \
             discord slack raycast orbstack spotify crossover steam nvidia-geforce-now
 
 # Configure git+ssh
@@ -61,5 +61,4 @@ defaults write -g NSWindowShouldDragOnGesture YES
 # Auto hide dock, disable mouse acceleration, shake mouse pointer to locate, and enable tap to click
 # disable "Show Spotlight search" and "Show Finder search window" (https://manual.raycast.com/hotkey)
 # Configure Raycast
-# Install Fusion
-# Install tailscale
+# Install Fusion, tailscale, and wipr
