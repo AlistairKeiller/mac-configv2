@@ -24,7 +24,7 @@ ln -s /opt/homebrew/bin/pip3 /opt/homebrew/bin/pip
 brew install --cask --no-quarantine alacritty
 
 # Install misc packages
-brew install starship lsd zoxide uv bat fd hyperfine ripgrep dust tokei zellij yazi sniffnet
+brew install starship lsd zoxide uv bat fd hyperfine dust tokei fzf
 
 # Install misc casks 
 brew install --cask visual-studio-code orcaslicer nikitabobko/tap/aerospace font-jetbrains-mono-nerd-font alex313031-thorium rustdesk \
