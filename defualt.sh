@@ -28,7 +28,7 @@ brew install starship lsd zoxide uv bat fd hyperfine dust tokei fzf
 
 # Install misc casks 
 brew install --cask visual-studio-code orcaslicer nikitabobko/tap/aerospace font-jetbrains-mono-nerd-font alex313031-thorium rustdesk \
-            discord slack raycast orbstack spotify crossover steam
+            discord slack raycast orbstack spotify crossover steam nvidia-geforce-now
 
 # Configure git+ssh
 git config --global user.name "Alistair Keiller"
