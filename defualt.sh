@@ -58,7 +58,23 @@ cp -r ./config/* ~/.config/
 # ctrl+cmd to drag window
 defaults write -g NSWindowShouldDragOnGesture YES
 
-# Auto hide dock, disable mouse acceleration, shake mouse pointer to locate, and enable tap to click
+# Auto hide dock
+defaults write com.apple.dock autohide -bool true
+
+# Disable mouse acceleration
+defaults write .GlobalPreferences com.apple.mouse.scaling -1
+
+# Enable tap to click
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+
+# Disable shake mouse pointer to locate
+defaults write ~/Library/Preferences/.GlobalPreferences CGDisableCursorLocationMagnification -bool true
+
 # disable "Show Spotlight search" and "Show Finder search window" (https://manual.raycast.com/hotkey)
 # Configure Raycast
 # Install Fusion, tailscale, and wipr
+
+# Cleanup Homebrew
+brew cleanup
