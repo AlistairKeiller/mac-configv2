@@ -15,24 +15,20 @@ fish -c "fish_add_path /opt/homebrew/bin"
 brew install rustup-init
 rustup-init -y --profile complete
 
-# Install Python
-brew install python
-ln -s /opt/homebrew/bin/python3 /opt/homebrew/bin/python
-ln -s /opt/homebrew/bin/pip3 /opt/homebrew/bin/pip
-
 # Install alacritty
 brew install --cask --no-quarantine alacritty
 
 # Install misc packages
-brew install starship lsd zoxide uv bat hyperfine dust tokei fzf
+brew install starship lsd zoxide uv bat hyperfine dust tokei
 
 # Install misc casks 
 brew install --cask visual-studio-code orcaslicer nikitabobko/tap/aerospace font-jetbrains-mono-nerd-font alex313031-thorium rustdesk raspberry-pi-imager \
-            discord slack raycast orbstack spotify crossover steam nvidia-geforce-now
+            discord slack raycast orbstack spotify crossover steam
 
 # .config
 mkdir -p ~/.config/
 cp -r ./config/* ~/.config/
+touch ~/.hushlogin
 
 # Configure git+ssh
 git config --global user.name "Alistair Keiller"
@@ -57,25 +53,18 @@ echo "$(git config --get user.email) namespaces=\"git\" $(cat ~/.ssh/id_ed25519.
 # copy the key, `pbcopy < ~/.ssh/id_ed25519.pub`, to https://github.com/settings/keys as both an Authentication key and Signing key
 
 # ctrl+cmd to drag window
-defaults write -g NSWindowShouldDragOnGesture YES
+defaults write -g NSWindowShouldDragOnGesture -bool "true"
 
-# Auto hide dock
-defaults write com.apple.dock autohide -bool true
+# Auto hide dock (https://macos-defaults.com/dock/autohide.html)
+defaults write com.apple.dock "autohide" -bool "true"
 
-# Disable mouse acceleration
-defaults write .GlobalPreferences com.apple.mouse.scaling -1
-
-# Enable tap to click
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+# Disable mouse acceleration (https://macos-defaults.com/mouse/linear.html)
+defaults write NSGlobalDomain com.apple.mouse.linear -bool "true"
 
 # Disable shake mouse pointer to locate
-defaults write ~/Library/Preferences/.GlobalPreferences CGDisableCursorLocationMagnification -bool true
+defaults write ~/Library/Preferences/.GlobalPreferences CGDisableCursorLocationMagnification -bool "true"
 
 # disable "Show Spotlight search" and "Show Finder search window" (https://manual.raycast.com/hotkey)
 # Configure Raycast
 # Install Fusion, tailscale, and wipr
 
-# Cleanup Homebrew
-brew cleanup
