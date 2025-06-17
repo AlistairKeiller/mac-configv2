@@ -19,10 +19,10 @@ rustup-init -y --profile complete
 brew install --cask --no-quarantine alacritty
 
 # Install misc packages
-brew install starship lsd zoxide uv bat hyperfine dust tokei
+brew install starship lsd zoxide uv bat hyperfine dust tokei gh
 
 # Install misc casks 
-brew install --cask visual-studio-code orcaslicer nikitabobko/tap/aerospace font-jetbrains-mono-nerd-font alex313031-thorium rustdesk raspberry-pi-imager \
+brew install --cask visual-studio-code orcaslicer nikitabobko/tap/aerospace font-jetbrains-mono-nerd-font alex313031-thorium rustdesk raspberry-pi-imager kdenlive \
             discord slack raycast orbstack spotify crossover steam
 
 # .config
