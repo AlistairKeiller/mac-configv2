@@ -22,8 +22,8 @@ brew install --cask --no-quarantine alacritty
 brew install starship lsd zoxide uv bat hyperfine dust tokei gh
 
 # Install misc casks 
-brew install --cask visual-studio-code orcaslicer nikitabobko/tap/aerospace font-jetbrains-mono-nerd-font alex313031-thorium rustdesk raspberry-pi-imager kdenlive \
-            discord slack raycast orbstack spotify crossover steam
+brew install --cask visual-studio-code nikitabobko/tap/aerospace font-jetbrains-mono-nerd-font google-chrome \
+            discord slack orbstack spotify
 
 # .config
 mkdir -p ~/.config/
@@ -49,7 +49,5 @@ defaults write NSGlobalDomain com.apple.mouse.linear -bool "true"
 # Disable shake mouse pointer to locate
 defaults write ~/Library/Preferences/.GlobalPreferences CGDisableCursorLocationMagnification -bool "true"
 
-# disable "Show Spotlight search" and "Show Finder search window" (https://manual.raycast.com/hotkey)
-# Configure Raycast
-# Install Fusion, tailscale, and wipr
+# Install tailscale and wipr
 
