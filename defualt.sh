@@ -50,4 +50,3 @@ defaults write NSGlobalDomain com.apple.mouse.linear -bool "true"
 defaults write ~/Library/Preferences/.GlobalPreferences CGDisableCursorLocationMagnification -bool "true"
 
 # Install tailscale and wipr
-
