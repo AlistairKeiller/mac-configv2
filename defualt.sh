@@ -7,8 +7,8 @@
 /opt/homebrew/bin/brew install fish \
     rustup-init \
     starship lsd zoxide uv bat hyperfine dust tokei gh \
-    ghostty visual-studio-code nikitabobko/tap/aerospace font-jetbrains-mono-nerd-font google-chrome \
-    discord slack orbstack spotify
+    alacritty nikitabobko/tap/aerospace font-jetbrains-mono-nerd-font \
+    visual-studio-code google-chrome discord slack orbstack spotify
 
 # setup fish
 sudo sh -c 'echo /opt/homebrew/bin/fish >> /etc/shells'
