@@ -2,28 +2,21 @@
 
 # Install Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' > /Users/alistairkeiller/.zprofile
-eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# Install fish
-brew install fish
+# Install brew packages
+/opt/homebrew/bin/brew install fish \
+    rustup-init \
+    starship lsd zoxide uv bat hyperfine dust tokei gh \
+    ghostty visual-studio-code nikitabobko/tap/aerospace font-jetbrains-mono-nerd-font google-chrome \
+    discord slack orbstack spotify
+
+# setup fish
 sudo sh -c 'echo /opt/homebrew/bin/fish >> /etc/shells'
 chsh -s /opt/homebrew/bin/fish
 fish -c "fish_add_path /opt/homebrew/bin"
 
-# Install rust
-brew install rustup-init
+# setup rust
 rustup-init -y --profile complete
-
-# Install alacritty
-brew install --cask --no-quarantine alacritty
-
-# Install misc packages
-brew install starship lsd zoxide uv bat hyperfine dust tokei gh
-
-# Install misc casks 
-brew install --cask visual-studio-code nikitabobko/tap/aerospace font-jetbrains-mono-nerd-font google-chrome \
-            discord slack orbstack spotify
 
 # .config
 mkdir -p ~/.config/
