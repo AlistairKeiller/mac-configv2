@@ -1,4 +1,5 @@
 #!/bin/zsh
+set -euo pipefail
 
 if [ "$EUID" -ne 0 ]; then
   echo "Please run with sudo"
