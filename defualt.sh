@@ -15,7 +15,7 @@ sudo -u $REAL_USER /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/
 sudo -u $REAL_USER /opt/homebrew/bin/brew install fish \
     rustup-init \
     starship lsd zoxide uv bat hyperfine dust tokei gh \
-    zed alacritty nikitabobko/tap/aerospace font-jetbrains-mono-nerd-font \
+    nteract zed alacritty nikitabobko/tap/aerospace font-jetbrains-mono-nerd-font \
     google-chrome discord slack orbstack
 # setup fish
 sh -c 'echo /opt/homebrew/bin/fish >> /etc/shells'
