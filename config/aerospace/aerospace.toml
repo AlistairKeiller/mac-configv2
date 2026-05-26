@@ -36,6 +36,12 @@ alt-enter       = 'exec-and-forget open -na Ghostty'
 alt-shift-q     = 'close'
 alt-f           = 'fullscreen'
 alt-shift-space = 'layout floating tiling'
+alt-shift-c     = 'reload-config'
+alt-shift-s     = 'exec-and-forget screencapture -i -c'
+
+# Disable macOS hide-app shortcuts (conflict with tiling binds)
+cmd-h     = []
+cmd-alt-h = []
 
 # Layout
 alt-slash = 'layout tiles horizontal vertical'

@@ -42,11 +42,15 @@ run git config --global user.name "Alistair Keiller"
 run git config --global user.email alistair@keiller.net
 run gh auth status &>/dev/null || run gh auth login
 
+# Wallpapers — remove images too small to fill the display without upscaling
+run python3 "$(dirname $0)/delete_small_walls.py"
+
 # Ricing services
 run brew services start sketchybar
 run brew services start borders
 
 # macOS defaults
+run defaults write -g AppleMenuBarVisibleInFullscreen -bool false
 run defaults write -g NSWindowShouldDragOnGesture -bool true
 run defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
 run defaults write -g CGDisableCursorLocationMagnification -bool true

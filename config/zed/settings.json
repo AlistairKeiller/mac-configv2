@@ -31,6 +31,9 @@
     "light": "One Light",
     "dark": "Catppuccin Mocha",
   },
+  "terminal": {
+    "font_family": "JetBrainsMono Nerd Font",
+  },
   "lsp": {
     "tinymist": {
       "initialization_options": {
