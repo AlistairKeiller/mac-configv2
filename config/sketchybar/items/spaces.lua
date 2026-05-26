@@ -5,6 +5,7 @@ local settings = require("settings")
 sbar.add("event", "aerospace_workspace_change")
 
 local spaces = {}
+local brackets = {}
 
 local handle = io.popen("aerospace list-workspaces --all 2>/dev/null")
 local workspace_ids = {}
@@ -46,7 +47,7 @@ for _, sid in ipairs(workspace_ids) do
 
   spaces[sid] = space
 
-  local space_bracket = sbar.add("bracket", { space.name }, {
+  local space_bracket = sbar.add("bracket", "space.bracket." .. sid, { space.name }, {
     background = {
       color = colors.transparent,
       border_color = colors.bg2,
@@ -54,6 +55,8 @@ for _, sid in ipairs(workspace_ids) do
       border_width = 2,
     }
   })
+
+  brackets[sid] = space_bracket
 
   sbar.add("item", "space.padding." .. sid, {
     script = "",
@@ -75,6 +78,22 @@ for _, sid in ipairs(workspace_ids) do
   space:subscribe("mouse.clicked", function(env)
     sbar.exec("aerospace workspace " .. sid)
   end)
+end
+
+-- Set initial highlight based on the currently focused workspace
+local focused_handle = io.popen("aerospace list-workspaces --focused 2>/dev/null")
+local focused_ws = focused_handle:read("*a"):match("^%s*(.-)%s*$")
+focused_handle:close()
+
+if focused_ws ~= "" and spaces[focused_ws] then
+  spaces[focused_ws]:set({
+    icon = { highlight = true },
+    label = { highlight = true },
+    background = { border_color = colors.black },
+  })
+  brackets[focused_ws]:set({
+    background = { border_color = colors.grey }
+  })
 end
 
 local spaces_indicator = sbar.add("item", {
