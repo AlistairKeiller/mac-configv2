@@ -1,4 +1,4 @@
-toggle_hotkey = "ALT+SPACE"
+toggle_hotkey = "SUPER+SPACE"
 clipboard_hotkey = "SUPER+SHIFT+C"
 placeholder = "Time to be productive!"
 search_url = "https://google.com/search?q=%s"
