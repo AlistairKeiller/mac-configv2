@@ -12,17 +12,18 @@ run /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/instal
 
 # Packages
 run brew install fish starship lsd zoxide gh uv rustup \
-                 lua jq switchaudio-osx \
-                 FelixKratz/formulae/{sketchybar,borders}
+                lua jq switchaudio-osx nowplaying-cli \
+                bat fd ripgrep git-delta fzf \
+                FelixKratz/formulae/{sketchybar,borders}
 run brew install --cask ghostty zed slack orbstack google-chrome discord \
                         font-jetbrains-mono-nerd-font font-sketchybar-app-font sf-symbols \
                         nikitabobko/tap/aerospace unsecretised/tap/rustcast
 
-# Strip Gatekeeper quarantine on unsigned apps (replaces removed --no-quarantine flag)
+# Remove Gatekeeper quarantine from unsigned apps
 run xattr -dr com.apple.quarantine /Applications/AeroSpace.app || true
 run xattr -dr com.apple.quarantine /Applications/RustCast.app  || true
 
-# SbarLua (compiled C module required by FelixKratz sketchybar config)
+# SbarLua (compiled C module required by sketchybar Lua config)
 run rm -rf /tmp/SbarLua
 run git clone --depth 1 https://github.com/FelixKratz/SbarLua /tmp/SbarLua
 run make -C /tmp/SbarLua install
@@ -40,7 +41,17 @@ run cp -R ./config/. $USER_HOME/.config/
 run touch $USER_HOME/.hushlogin
 run git config --global user.name "Alistair Keiller"
 run git config --global user.email alistair@keiller.net
+run git config --global core.pager delta
+run git config --global interactive.diffFilter "delta --color-only"
+run git config --global delta.navigate true
+run git config --global delta.syntax-theme "Catppuccin Mocha"
 run gh auth status &>/dev/null || run gh auth login
+
+# bat — install Catppuccin Mocha theme
+run mkdir -p "$USER_HOME/Library/Application Support/bat/themes"
+run curl -sL "https://raw.githubusercontent.com/catppuccin/bat/main/themes/Catppuccin%20Mocha.tmTheme" \
+     -o "$USER_HOME/Library/Application Support/bat/themes/Catppuccin Mocha.tmTheme"
+run bat cache --build
 
 # Wallpapers — remove images too small to fill the display without upscaling
 run python3 "$(dirname $0)/delete_small_walls.py"
@@ -56,6 +67,7 @@ run defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
 run defaults write -g CGDisableCursorLocationMagnification -bool true
 run defaults write -g com.apple.mouse.linear -bool true
 run defaults write com.apple.dock autohide -bool true
+run defaults write com.apple.dock show-recents -bool false
 run killall Dock 2>/dev/null || true
 
 cat <<'EOF'

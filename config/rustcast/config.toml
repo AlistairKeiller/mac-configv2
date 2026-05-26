@@ -4,7 +4,7 @@ placeholder = "Time to be productive!"
 search_url = "https://google.com/search?q=%s"
 haptic_feedback = false
 show_trayicon = true
-shells = [] # remove this line if you want shell commands to work
+shells = []
 log_path = "/tmp/rustcast.log"
 
 [buffer_rules]
@@ -12,8 +12,8 @@ clear_on_hide = true
 clear_on_enter = true
 
 [theme]
-text_color = [0.95, 0.95, 0.96]
-background_color = [0.0, 0.0, 0.0]
+text_color = [0.804, 0.839, 0.957]      # #cdd6f4 — catppuccin mocha text
+background_color = [0.118, 0.118, 0.180] # #1e1e2e — catppuccin mocha base
 blur = false
 show_icons = true
 show_scroll_bar = true
