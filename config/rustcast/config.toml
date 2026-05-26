@@ -1,0 +1,23 @@
+toggle_hotkey = "ALT+SPACE"
+clipboard_hotkey = "SUPER+SHIFT+C"
+placeholder = "Time to be productive!"
+search_url = "https://google.com/search?q=%s"
+haptic_feedback = false
+show_trayicon = true
+shells = [] # remove this line if you want shell commands to work
+log_path = "/tmp/rustcast.log"
+
+[buffer_rules]
+clear_on_hide = true
+clear_on_enter = true
+
+[theme]
+text_color = [0.95, 0.95, 0.96]
+background_color = [0.0, 0.0, 0.0]
+blur = false
+show_icons = true
+show_scroll_bar = true
+
+[modes]
+
+[aliases]
