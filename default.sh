@@ -57,8 +57,8 @@ run bat cache --build
 run python3 "$(dirname $0)/delete_small_walls.py"
 
 # Ricing services
-run brew services start sketchybar
-run brew services start borders
+run env HOMEBREW_SERVICES_NO_DOMAIN_WARNING=1 brew services restart sketchybar
+run env HOMEBREW_SERVICES_NO_DOMAIN_WARNING=1 brew services restart borders
 
 # macOS defaults
 run defaults write -g AppleMenuBarVisibleInFullscreen -bool false
