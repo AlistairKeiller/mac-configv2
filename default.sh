@@ -54,7 +54,7 @@ run curl -sL "https://raw.githubusercontent.com/catppuccin/bat/main/themes/Catpp
 run bat cache --build
 
 # Wallpapers — remove images too small to fill the display without upscaling
-run python3 "$(dirname $0)/delete_small_walls.py"
+run uv run --with pillow "$(dirname $0)/delete_small_walls.py"
 
 # Ricing services
 run env HOMEBREW_SERVICES_NO_DOMAIN_WARNING=1 brew services restart sketchybar
