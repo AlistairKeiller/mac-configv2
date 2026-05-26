@@ -1,43 +1,53 @@
 #!/bin/zsh
 set -euo pipefail
+[[ $EUID -eq 0 ]] || { echo "Run with: sudo $0"; exit 1; }
+: "${SUDO_USER:?run via sudo, not as root}"
 
-if [ "$EUID" -ne 0 ]; then
-  echo "Please run with sudo"
-  exit 1
-fi
+USER_HOME=$(eval echo ~$SUDO_USER)
+FISH=/opt/homebrew/bin/fish
+run() { sudo -u "$SUDO_USER" env PATH="/opt/homebrew/bin:$PATH" "$@"; }
 
-REAL_USER=$SUDO_USER
-REAL_HOME=$(eval echo ~$SUDO_USER)
+# Homebrew
+run /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# Install Homebrew
-sudo -u $REAL_USER /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-# Install brew packages
-sudo -u $REAL_USER /opt/homebrew/bin/brew install fish \
-    rustup-init \
-    starship lsd zoxide uv bat hyperfine dust tokei gh \
-    nteract zed alacritty nikitabobko/tap/aerospace font-jetbrains-mono-nerd-font \
-    google-chrome discord slack orbstack
-# setup fish
-sh -c 'echo /opt/homebrew/bin/fish >> /etc/shells'
-chsh -s /opt/homebrew/bin/fish $REAL_USER
-sudo -u $REAL_USER /opt/homebrew/bin/fish -c "fish_add_path /opt/homebrew/bin"
-# setup rust
-sudo -u $REAL_USER /opt/homebrew/bin/rustup-init -y --profile complete
-# .config
-mkdir -p $REAL_HOME/.config/
-sudo -u $REAL_USER cp -r ./config/* $REAL_HOME/.config/
-sudo -u $REAL_USER touch $REAL_HOME/.hushlogin
-# Configure git
-sudo -u $REAL_USER git config --global user.name "Alistair Keiller"
-sudo -u $REAL_USER git config --global user.email alistair@keiller.net
-# Configure git authentication
-sudo -u $REAL_USER /opt/homebrew/bin/gh auth login
-# ctrl+cmd to drag window
-sudo -u $REAL_USER defaults write -g NSWindowShouldDragOnGesture -bool "true"
-# Auto hide dock (https://macos-defaults.com/dock/autohide.html)
-sudo -u $REAL_USER defaults write com.apple.dock "autohide" -bool "true"
-# Disable mouse acceleration (https://macos-defaults.com/mouse/linear.html)
-sudo -u $REAL_USER defaults write NSGlobalDomain com.apple.mouse.linear -bool "true"
-# Disable shake mouse pointer to locate
-sudo -u $REAL_USER defaults write $REAL_HOME/Library/Preferences/.GlobalPreferences CGDisableCursorLocationMagnification -bool "true"
-# Install tailscale and wipr
+# Packages
+run brew install fish starship lsd zoxide gh uv rustup-init \
+                 FelixKratz/formulae/{sketchybar,borders}
+run brew install --cask ghostty zed slack orbstack google-chrome discord \
+                        font-jetbrains-mono-nerd-font sketchybar-app-font
+run brew install --no-quarantine --cask nikitabobko/tap/aerospace \
+                                        unsecretised/tap/rustcast
+
+# Fish as login shell
+grep -qxF $FISH /etc/shells || echo $FISH >> /etc/shells
+chsh -s $FISH $SUDO_USER
+
+# Rust
+run /opt/homebrew/bin/rustup-init -y --profile complete --no-modify-path
+
+# Dotfiles + git
+run cp -R ./config/. $USER_HOME/.config/
+run touch $USER_HOME/.hushlogin
+run git config --global user.name "Alistair Keiller"
+run git config --global user.email alistair@keiller.net
+run gh auth status &>/dev/null || run gh auth login
+
+# Ricing services
+run brew services start sketchybar
+run brew services start borders
+
+# macOS defaults
+run defaults write -g NSWindowShouldDragOnGesture -bool true
+run defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
+run defaults write -g CGDisableCursorLocationMagnification -bool true
+run defaults write -g com.apple.mouse.linear -bool true
+run defaults write com.apple.dock autohide -bool true
+run killall Dock 2>/dev/null || true
+
+cat <<'EOF'
+
+Done. Manual steps:
+  • Open AeroSpace and RustCast once — grant Accessibility permission.
+  • Disable Spotlight hotkey in System Settings → Keyboard (so RustCast can take ⌘Space).
+  • Install Tailscale and Wipr from the App Store.
+EOF
