@@ -12,11 +12,19 @@ run /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/instal
 
 # Packages
 run brew install fish starship lsd zoxide gh uv rustup-init \
+                 lua jq switchaudio-osx \
                  FelixKratz/formulae/{sketchybar,borders}
 run brew install --cask ghostty zed slack orbstack google-chrome discord \
-                        font-jetbrains-mono-nerd-font sketchybar-app-font
+                 font-jetbrains-mono-nerd-font font-sketchybar-app-font sf-symbols
 run brew install --no-quarantine --cask nikitabobko/tap/aerospace \
                                         unsecretised/tap/rustcast
+
+# SketchyBar — FelixKratz dotfiles + SbarLua
+run rm -rf /tmp/SbarLua /tmp/felixkratz $USER_HOME/.config/sketchybar
+run git clone --depth 1 https://github.com/FelixKratz/SbarLua /tmp/SbarLua
+run make -C /tmp/SbarLua install
+run git clone --depth 1 https://github.com/FelixKratz/dotfiles /tmp/felixkratz
+run cp -R /tmp/felixkratz/.config/sketchybar $USER_HOME/.config/
 
 # Fish as login shell
 grep -qxF $FISH /etc/shells || echo $FISH >> /etc/shells
