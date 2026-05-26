@@ -11,27 +11,29 @@ run() { sudo -u "$SUDO_USER" env PATH="/opt/homebrew/bin:$PATH" "$@"; }
 run /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Packages
-run brew install fish starship lsd zoxide gh uv rustup-init \
+run brew install fish starship lsd zoxide gh uv rustup \
                  lua jq switchaudio-osx \
                  FelixKratz/formulae/{sketchybar,borders}
 run brew install --cask ghostty zed slack orbstack google-chrome discord \
-                 font-jetbrains-mono-nerd-font font-sketchybar-app-font sf-symbols
-run brew install --no-quarantine --cask nikitabobko/tap/aerospace \
-                                        unsecretised/tap/rustcast
+                        font-jetbrains-mono-nerd-font font-sketchybar-app-font sf-symbols \
+                        nikitabobko/tap/aerospace unsecretised/tap/rustcast
 
-# SketchyBar — FelixKratz dotfiles + SbarLua
-run rm -rf /tmp/SbarLua /tmp/felixkratz $USER_HOME/.config/sketchybar
+# Strip Gatekeeper quarantine on unsigned apps (replaces removed --no-quarantine flag)
+run xattr -dr com.apple.quarantine /Applications/AeroSpace.app || true
+run xattr -dr com.apple.quarantine /Applications/RustCast.app  || true
+
+# SbarLua (compiled C module required by FelixKratz sketchybar config)
+run rm -rf /tmp/SbarLua
 run git clone --depth 1 https://github.com/FelixKratz/SbarLua /tmp/SbarLua
 run make -C /tmp/SbarLua install
-run git clone --depth 1 https://github.com/FelixKratz/dotfiles /tmp/felixkratz
-run cp -R /tmp/felixkratz/.config/sketchybar $USER_HOME/.config/
 
 # Fish as login shell
 grep -qxF $FISH /etc/shells || echo $FISH >> /etc/shells
 chsh -s $FISH $SUDO_USER
 
 # Rust
-run /opt/homebrew/bin/rustup-init -y --profile complete --no-modify-path
+run /opt/homebrew/bin/rustup set profile complete
+run /opt/homebrew/bin/rustup default stable
 
 # Dotfiles + git
 run cp -R ./config/. $USER_HOME/.config/
@@ -55,7 +57,10 @@ run killall Dock 2>/dev/null || true
 cat <<'EOF'
 
 Done. Manual steps:
-  • Open AeroSpace and RustCast once — grant Accessibility permission.
-  • Disable Spotlight hotkey in System Settings → Keyboard (so RustCast can take ⌘Space).
+  • Log out and back in (picks up fish + AeroSpace start-at-login).
+  • Open OrbStack once to finish its VM setup.
+  • Grant Accessibility to AeroSpace and RustCast on first launch.
+  • System Settings → Keyboard → Spotlight: uncheck the hotkey (frees ⌘Space for RustCast).
+  • System Settings → Desktop & Dock: uncheck "Displays have separate Spaces".
   • Install Tailscale and Wipr from the App Store.
 EOF
