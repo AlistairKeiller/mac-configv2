@@ -16,7 +16,7 @@ for i = 1, 9 do
       padding_left = 15,
       padding_right = 15,
       color = colors.white,
-      highlight_color = colors.red,
+      highlight_color = colors.blue,
     },
     label = { drawing = false },
     padding_right = 1,
