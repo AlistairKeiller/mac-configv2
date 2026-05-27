@@ -24,7 +24,10 @@ inner.vertical   = 8
 outer.left   = 8
 outer.right  = 8
 outer.bottom = 8
-outer.top    = 16   # room for sketchybar; drop to ~10 on a notched laptop
+outer.top = [
+  { monitor."Odyssey G80SD" = 50 },
+  16,
+]
 
 [mode.main.binding]
 # Launch & window
