@@ -19,6 +19,8 @@ local icons = {
       _33="􀊥",
       _10="􀊡",
       _0="􀊣",
+      headphones="􀑈",
+      headphones_off="􀊣",
     },
     battery = {
       _100 = "􀛨",
@@ -61,6 +63,8 @@ local icons = {
       _33="",
       _10="",
       _0="",
+      headphones="",
+      headphones_off="󰏴",
     },
     battery = {
       _100 = "",

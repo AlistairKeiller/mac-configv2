@@ -38,6 +38,7 @@ local volume_icon = sbar.add("item", "widgets.volume.icon", {
     },
   },
   label = { drawing = false },
+  update_freq = 5,
 })
 
 sbar.add("bracket", "widgets.volume.bracket", {
@@ -53,24 +54,45 @@ sbar.add("item", "widgets.volume.padding", {
 })
 
 local last_set = -1
+local current_volume = 0
+local is_headphones = false
+
+local function pick_icon()
+  if is_headphones then
+    if current_volume == 0 then return icons.volume.headphones_off end
+    return icons.volume.headphones
+  end
+  if current_volume > 60 then return icons.volume._100 end
+  if current_volume > 30 then return icons.volume._66 end
+  if current_volume > 10 then return icons.volume._33 end
+  if current_volume > 0 then return icons.volume._10 end
+  return icons.volume._0
+end
+
+local function refresh_device()
+  sbar.exec([=[system_profiler SPAudioDataType 2>/dev/null | awk '
+    /^        [^ ]/ { mode = "scan" }
+    mode == "scan" && /Default Output Device: Yes/ { mode = "found" }
+    mode == "found" && /Transport: / { sub(/^[[:space:]]+Transport:[[:space:]]+/, ""); print tolower($0); exit }
+  ']=], function(result)
+    local transport = (result or ""):gsub("%s+$", "")
+    local hp = transport ~= "" and transport ~= "built-in"
+    if hp ~= is_headphones then
+      is_headphones = hp
+      volume_icon:set({ icon = pick_icon() })
+    end
+  end)
+end
 
 volume_slider:subscribe("volume_change", function(env)
-  local volume = tonumber(env.INFO)
-  local icon = icons.volume._0
-  if volume > 60 then
-    icon = icons.volume._100
-  elseif volume > 30 then
-    icon = icons.volume._66
-  elseif volume > 10 then
-    icon = icons.volume._33
-  elseif volume > 0 then
-    icon = icons.volume._10
-  end
-
-  last_set = volume
-  volume_icon:set({ icon = icon })
-  volume_slider:set({ slider = { percentage = volume } })
+  current_volume = tonumber(env.INFO) or 0
+  last_set = current_volume
+  volume_icon:set({ icon = pick_icon() })
+  volume_slider:set({ slider = { percentage = current_volume } })
+  refresh_device()
 end)
+
+volume_icon:subscribe({ "routine", "system_woke", "forced" }, refresh_device)
 
 volume_icon:subscribe("mouse.clicked", function()
   sbar.exec("open /System/Library/PreferencePanes/Sound.prefpane")
