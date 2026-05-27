@@ -38,7 +38,6 @@ local volume_icon = sbar.add("item", "widgets.volume.icon", {
     },
   },
   label = { drawing = false },
-  update_freq = 5,
 })
 
 sbar.add("bracket", "widgets.volume.bracket", {
@@ -69,14 +68,14 @@ local function pick_icon()
   return icons.volume._0
 end
 
+local checking = false
 local function refresh_device()
-  sbar.exec([=[system_profiler SPAudioDataType 2>/dev/null | awk '
-    /^        [^ ]/ { mode = "scan" }
-    mode == "scan" && /Default Output Device: Yes/ { mode = "found" }
-    mode == "found" && /Transport: / { sub(/^[[:space:]]+Transport:[[:space:]]+/, ""); print tolower($0); exit }
-  ']=], function(result)
-    local transport = (result or ""):gsub("%s+$", "")
-    local hp = transport ~= "" and transport ~= "built-in"
+  if checking then return end
+  checking = true
+  sbar.exec([[system_profiler SPAudioDataType 2>/dev/null | awk '/Default Output Device: Yes/{f=1} f && /Transport:/{print $2; exit}']], function(result)
+    checking = false
+    local transport = (result or ""):match("%S+")
+    local hp = transport ~= nil and transport ~= "Built-in"
     if hp ~= is_headphones then
       is_headphones = hp
       volume_icon:set({ icon = pick_icon() })
@@ -92,7 +91,9 @@ volume_slider:subscribe("volume_change", function(env)
   refresh_device()
 end)
 
-volume_icon:subscribe({ "routine", "system_woke", "forced" }, refresh_device)
+volume_icon:subscribe({ "system_woke", "forced" }, refresh_device)
+
+refresh_device()
 
 volume_icon:subscribe("mouse.clicked", function()
   sbar.exec("open /System/Library/PreferencePanes/Sound.prefpane")
