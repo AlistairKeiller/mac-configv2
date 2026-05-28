@@ -11,7 +11,7 @@ run() { sudo -u "$SUDO_USER" "$@"; }
 export DEBIAN_FRONTEND=noninteractive
 apt-get update
 apt-get install -y --no-install-recommends \
-    curl fish helix bat fd-find ripgrep fzf lsd zoxide
+    curl fish helix bat fd-find ripgrep fzf zoxide
 
 command -v starship >/dev/null || curl -sS https://starship.rs/install.sh | sh -s -- -y
 
@@ -23,7 +23,7 @@ run mkdir -p "$USER_HOME/.config"
 run cp -R "$REPO/config/fish"  "$USER_HOME/.config/"
 run cp -R "$REPO/config/helix" "$USER_HOME/.config/"
 run cp    "$REPO/config/starship.toml" "$USER_HOME/.config/starship.toml"
-run sed -i '/alias tailscale=/d' "$USER_HOME/.config/fish/config.fish"
+run sed -i -e '/alias tailscale=/d' -e "/alias ls='lsd'/d" "$USER_HOME/.config/fish/config.fish"
 
 chsh -s /usr/bin/fish "$SUDO_USER"
 echo "Done. Log out and back in."
