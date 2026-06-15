@@ -32,7 +32,6 @@ grep -qxF $FISH /etc/shells || echo $FISH >> /etc/shells
 chsh -s $FISH $SUDO_USER
 
 # Rust
-run /opt/homebrew/bin/rustup set profile complete
 run /opt/homebrew/bin/rustup default stable
 
 # Dotfiles + git
