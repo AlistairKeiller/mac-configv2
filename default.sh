@@ -17,11 +17,10 @@ run brew install fish starship lsd zoxide gh uv rustup \
                 FelixKratz/formulae/{sketchybar,borders}
 run brew install --cask ghostty zed slack orbstack google-chrome discord \
                         font-jetbrains-mono-nerd-font font-sketchybar-app-font sf-symbols \
-                        nikitabobko/tap/aerospace unsecretised/tap/rustcast
+                        nikitabobko/tap/aerospace
 
 # Remove Gatekeeper quarantine from unsigned apps
 run xattr -dr com.apple.quarantine /Applications/AeroSpace.app || true
-run xattr -dr com.apple.quarantine /Applications/RustCast.app  || true
 
 # SbarLua (compiled C module required by sketchybar Lua config)
 run rm -rf /tmp/SbarLua
@@ -75,8 +74,8 @@ cat <<'EOF'
 Done. Manual steps:
   • Log out and back in (picks up fish + AeroSpace start-at-login).
   • Open OrbStack once to finish its VM setup.
-  • Grant Accessibility to AeroSpace and RustCast on first launch.
-  • System Settings → Keyboard → Spotlight: uncheck the hotkey (frees ⌘Space for RustCast).
+  • Grant Accessibility to AeroSpace.
+  • System Settings → Keyboard → Shortcuts change ⌘Space from spotlight to application launcher.
   • System Settings → Desktop & Dock: uncheck "Displays have separate Spaces".
   • Install Tailscale and Wipr from the App Store.
 EOF
