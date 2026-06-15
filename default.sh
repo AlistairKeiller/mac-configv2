@@ -74,7 +74,8 @@ Done. Manual steps:
   • Log out and back in (picks up fish + AeroSpace start-at-login).
   • Open OrbStack once to finish its VM setup.
   • Grant Accessibility to AeroSpace.
-  • System Settings → Keyboard → Shortcuts change ⌘Space from spotlight to application launcher.
+  • System Settings → Keyboard → Keyboard Shortcuts → Spotlight change ⌘Space from "Show spotlight search" to "Show apps".
   • System Settings → Desktop & Dock: uncheck "Displays have separate Spaces".
+  • System Settings → Menu Bar → Automatically Hide and show menu bar = Always
   • Install Tailscale and Wipr from the App Store.
 EOF
