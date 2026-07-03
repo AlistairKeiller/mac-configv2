@@ -37,6 +37,7 @@ defaults write com.apple.dock show-recents -bool false
 cat <<'EOF'
 
 Done. Manual steps:
-  • System Settings → Keyboard → Keyboard Shortcuts → Spotlight change ⌘Space from "Show spotlight search" to "Show apps".
-  • Install Tailscale and Wipr from the App Store.
+- Install Tailscale and Wipr from the App Store.
+- sudo cp /etc/pam.d/sudo_local.template /etc/pam.d/sudo_local
+- sudo hx /etc/pam.d/sudo_local # uncomment
 EOF
