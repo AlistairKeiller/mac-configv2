@@ -3,10 +3,8 @@
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Packages
-brew install fish starship lsd zoxide git gh uv \
-                bat fd ripgrep git-delta fzf
-brew install --cask ghostty zed slack orbstack google-chrome discord \
-                        font-jetbrains-mono-nerd-font
+brew install fish starship lsd zoxide git gh uv helix bat fd ripgrep git-delta fzf
+brew install --cask ghostty zed slack orbstack google-chrome discord font-jetbrains-mono-nerd-font
 
 # Fish as login shell
 grep -qxF /opt/homebrew/bin/fish /etc/shells || echo /opt/homebrew/bin/fish | sudo tee -a /etc/shells
