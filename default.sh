@@ -12,20 +12,9 @@ run /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/instal
 
 # Packages
 run brew install fish starship lsd zoxide gh uv rustup \
-                lua jq switchaudio-osx nowplaying-cli \
-                bat fd ripgrep git-delta fzf \
-                FelixKratz/formulae/{sketchybar,borders}
+                bat fd ripgrep git-delta fzf
 run brew install --cask ghostty zed slack orbstack google-chrome discord \
-                        font-jetbrains-mono-nerd-font font-sketchybar-app-font sf-symbols \
-                        nikitabobko/tap/aerospace
-
-# Remove Gatekeeper quarantine from unsigned apps
-run xattr -dr com.apple.quarantine /Applications/AeroSpace.app || true
-
-# SbarLua (compiled C module required by sketchybar Lua config)
-run rm -rf /tmp/SbarLua
-run git clone --depth 1 https://github.com/FelixKratz/SbarLua /tmp/SbarLua
-run make -C /tmp/SbarLua install
+                        font-jetbrains-mono-nerd-font
 
 # Fish as login shell
 grep -qxF $FISH /etc/shells || echo $FISH >> /etc/shells
@@ -45,18 +34,8 @@ run git config --global delta.navigate true
 run git config --global delta.syntax-theme "Catppuccin Mocha"
 run gh auth status &>/dev/null || run gh auth login
 
-# bat — install Catppuccin Mocha theme
-run mkdir -p "$USER_HOME/Library/Application Support/bat/themes"
-run curl -sL "https://raw.githubusercontent.com/catppuccin/bat/main/themes/Catppuccin%20Mocha.tmTheme" \
-     -o "$USER_HOME/Library/Application Support/bat/themes/Catppuccin Mocha.tmTheme"
-run bat cache --build
-
 # Wallpapers — remove images too small to fill the display without upscaling
 run uv run --with pillow --python 3.14 "$(dirname $0)/delete_small_walls.py"
-
-# Ricing services
-run env HOMEBREW_SERVICES_NO_DOMAIN_WARNING=1 brew services restart sketchybar
-run env HOMEBREW_SERVICES_NO_DOMAIN_WARNING=1 brew services restart borders
 
 # macOS defaults
 run defaults write -g AppleMenuBarVisibleInFullscreen -bool false
@@ -71,11 +50,6 @@ run killall Dock 2>/dev/null || true
 cat <<'EOF'
 
 Done. Manual steps:
-  • Log out and back in (picks up fish + AeroSpace start-at-login).
-  • Open OrbStack once to finish its VM setup.
-  • Grant Accessibility to AeroSpace.
   • System Settings → Keyboard → Keyboard Shortcuts → Spotlight change ⌘Space from "Show spotlight search" to "Show apps".
-  • System Settings → Desktop & Dock: uncheck "Displays have separate Spaces".
-  • System Settings → Menu Bar → Automatically Hide and show menu bar = Always
   • Install Tailscale and Wipr from the App Store.
 EOF
