@@ -1,51 +1,40 @@
 #!/bin/zsh
-set -euo pipefail
-[[ $EUID -eq 0 ]] || { echo "Run with: sudo $0"; exit 1; }
-: "${SUDO_USER:?run via sudo, not as root}"
-
-USER_HOME=$(eval echo ~$SUDO_USER)
-FISH=/opt/homebrew/bin/fish
-run() { sudo -u "$SUDO_USER" env PATH="/opt/homebrew/bin:$PATH" "$@"; }
-
 # Homebrew
-run /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Packages
-run brew install fish starship lsd zoxide gh uv rustup \
+brew install fish starship lsd zoxide git gh uv \
                 bat fd ripgrep git-delta fzf
-run brew install --cask ghostty zed slack orbstack google-chrome discord \
+brew install --cask ghostty zed slack orbstack google-chrome discord \
                         font-jetbrains-mono-nerd-font
 
 # Fish as login shell
-grep -qxF $FISH /etc/shells || echo $FISH >> /etc/shells
-chsh -s $FISH $SUDO_USER
+grep -qxF /opt/homebrew/bin/fish /etc/shells || echo /opt/homebrew/bin/fish | sudo tee -a /etc/shells
+sudo chsh -s /opt/homebrew/bin/fish "$USER"
 
-# Rust
-run /opt/homebrew/bin/rustup default stable
+# Install rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # Dotfiles + git
-run cp -R ./config/. $USER_HOME/.config/
-run touch $USER_HOME/.hushlogin
-run git config --global user.name "Alistair Keiller"
-run git config --global user.email alistair@keiller.net
-run git config --global core.pager delta
-run git config --global interactive.diffFilter "delta --color-only"
-run git config --global delta.navigate true
-run git config --global delta.syntax-theme "Catppuccin Mocha"
-run gh auth status &>/dev/null || run gh auth login
+mkdir -p ~/.config
+cp -R ./config/. ~/.config/
+touch ~/.hushlogin
+git config --global user.name "Alistair Keiller"
+git config --global user.email alistair@keiller.net
+git config --global core.pager delta
+git config --global interactive.diffFilter "delta --color-only"
+git config --global delta.navigate true
+git config --global delta.syntax-theme "Catppuccin Mocha"
+gh auth status &>/dev/null || gh auth login
 
 # Wallpapers — remove images too small to fill the display without upscaling
-run uv run --with pillow --python 3.14 "$(dirname $0)/delete_small_walls.py"
+uv run --with pillow --python 3.14 delete_small_walls.py
 
 # macOS defaults
-run defaults write -g AppleMenuBarVisibleInFullscreen -bool false
-run defaults write -g NSWindowShouldDragOnGesture -bool true
-run defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
-run defaults write -g CGDisableCursorLocationMagnification -bool true
-run defaults write -g com.apple.mouse.linear -bool true
-run defaults write com.apple.dock autohide -bool true
-run defaults write com.apple.dock show-recents -bool false
-run killall Dock 2>/dev/null || true
+defaults write -g NSWindowShouldDragOnGesture -bool true
+defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
+defaults write -g CGDisableCursorLocationMagnification -bool true
+defaults write com.apple.dock show-recents -bool false
 
 cat <<'EOF'
 
