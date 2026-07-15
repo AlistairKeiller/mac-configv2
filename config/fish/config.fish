@@ -5,7 +5,7 @@ zoxide init fish --cmd cd | source
 fzf --fish | source
 set -gx EDITOR hx
 alias ls='lsd'
-alias cat='bat'
+alias cat='bat -p'
 alias find='fd'
 alias grep='rg'
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
