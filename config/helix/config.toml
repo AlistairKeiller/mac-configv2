@@ -4,12 +4,8 @@ theme = "catppuccin_mocha"
 line-number = "relative"
 true-color = true
 color-modes = true
-soft-wrap.enable = true
 
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
 select = "underline"
-
-[editor.indent-guides]
-render = true
